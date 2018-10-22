@@ -19,10 +19,12 @@ h1 {
 
 main {
 	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 main * {
-		margin: 0px 30px;
+	margin: 0px 30px;
 }
 
 #description {

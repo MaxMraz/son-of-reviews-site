@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/review-layout.css">
 	<link rel="stylesheet" type="text/css" href="/css/nav.css">
 	<link rel="stylesheet" type="text/css" href="/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="/css/review-style.css">
 </head>
 	<nav>
 		<ul>
@@ -22,7 +23,7 @@
 			
 		</div>		
 		<div id="description">
-			<p th:text="${review.reviewRating}">review rating</p>
+			<p th:text="|Rating: ${review.reviewRating}|">review rating</p>
 			<p th:text="${review.reviewDescription}">description</p>
 			<p th:text="${review.recomendation}"></p>
 			
