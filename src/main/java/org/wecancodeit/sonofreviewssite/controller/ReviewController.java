@@ -64,7 +64,7 @@ public class ReviewController {
 		//TODO check if user already exists.
 		Account account = new Account(accountName);
 		account = accountRepo.save(account);
-		Comment comment = new Comment(account, fullComment, reviewRepo.findById(id).get());
+ 		Comment comment = new Comment(account, fullComment, reviewRepo.findById(id).get());
 		comment = commentRepo.save(comment);
 		return "redirect:/reviews/{id}";
 		

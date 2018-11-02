@@ -1,13 +1,12 @@
 package org.wecancodeit.sonofreviewssite.model;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Review {
@@ -21,11 +20,9 @@ public class Review {
 	private String reviewRating;
 	private String reviewImage;
 
+	@JsonIgnore
 	@ManyToOne
 	private Category category;
-	
-	@ManyToMany
-	private Collection<Tag> tags;
 
 	public Review() {
 	}
@@ -67,16 +64,7 @@ public class Review {
 	public Category getCategory() {
 		return category;
 	}
-	
-	public Collection<Tag> getTags() {
-		return tags;
-	}
 
-	public void addTag(Tag tagToAdd) {
-		System.out.println(tagToAdd);
-		System.out.println(tags);
-		tags.add(tagToAdd);
-	}
 	
 
 }

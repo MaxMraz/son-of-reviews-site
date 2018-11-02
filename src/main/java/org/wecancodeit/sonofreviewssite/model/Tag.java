@@ -1,18 +1,14 @@
 package org.wecancodeit.sonofreviewssite.model;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Tag {
 	@GeneratedValue @Id private Long id;
 	private String name;
-	@ManyToMany(mappedBy="tags")
-	private Collection<Review> reviews;
+
 	
 	public Tag() {}
 
@@ -27,12 +23,5 @@ public class Tag {
 	public String getName() {
 		return name;
 	}
-
-	public Collection<Review> getReviews() {
-		return reviews;
-	}
-	
-	
-	
 	
 }
