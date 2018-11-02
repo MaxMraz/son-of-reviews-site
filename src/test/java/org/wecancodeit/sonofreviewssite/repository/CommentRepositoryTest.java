@@ -19,13 +19,22 @@ import org.wecancodeit.sonofreviewssite.model.Category;
 public class CommentRepositoryTest {
 	@Resource
 	CommentRepository repo;
+	@Resource
+	CategoryRepository categoryRepo;
+	@Resource
+	ReviewRepository reviewRepo;
+	@Resource
+	AccountRepository accountRepo;
 
 	@Test
-	public void shouldReturnAllContacts() {
+	public void shouldReturnAllComments() {
 		// Arrange
 		Category category = new Category("a");
+		categoryRepo.save(category);
 		Review review = new Review ("a","a","a","a","a", category);
+		reviewRepo.save(review);
 		Account account = new Account("a");
+		accountRepo.save(account);
 		Comment comment = new Comment(account, "a", review);
 		Comment comment2 = new Comment(account, "b", review);
 		comment = repo.save(comment);
