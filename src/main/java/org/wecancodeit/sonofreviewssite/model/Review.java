@@ -1,11 +1,13 @@
 package org.wecancodeit.sonofreviewssite.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Lob;
 
 @Entity
 public class Review {
@@ -21,6 +23,9 @@ public class Review {
 
 	@ManyToOne
 	private Category category;
+	
+	@ManyToMany
+	private Collection<Tag> tags;
 
 	public Review() {
 	}

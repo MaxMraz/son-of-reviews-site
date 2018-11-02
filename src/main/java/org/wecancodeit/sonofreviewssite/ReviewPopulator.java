@@ -1,12 +1,19 @@
 package org.wecancodeit.sonofreviewssite;
 
 import javax.annotation.Resource;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
+import org.wecancodeit.sonofreviewssite.model.Account;
 import org.wecancodeit.sonofreviewssite.model.Category;
+import org.wecancodeit.sonofreviewssite.model.Comment;
 import org.wecancodeit.sonofreviewssite.model.Review;
+import org.wecancodeit.sonofreviewssite.model.Tag;
+import org.wecancodeit.sonofreviewssite.repository.AccountRepository;
 import org.wecancodeit.sonofreviewssite.repository.CategoryRepository;
+import org.wecancodeit.sonofreviewssite.repository.CommentRepository;
 import org.wecancodeit.sonofreviewssite.repository.ReviewRepository;
+import org.wecancodeit.sonofreviewssite.repository.TagRepository;
 
 @Service
 public class ReviewPopulator implements CommandLineRunner {
@@ -16,6 +23,15 @@ public class ReviewPopulator implements CommandLineRunner {
 
 	@Resource
 	ReviewRepository reviewRepo;
+	
+	@Resource
+	AccountRepository accountRepo;
+	
+	@Resource
+	CommentRepository commentRepo;
+	
+	@Resource
+	TagRepository tagRepo;
 
 	@Override
 
@@ -132,6 +148,19 @@ public class ReviewPopulator implements CommandLineRunner {
 				category5);
 		dadJoke4 = reviewRepo.save(dadJoke4);
 
+		
+		//COMMENTS-------------------
+		Account jerkGuy = new Account("MAGA420blazin69");
+		Comment jerkComment1 = new Comment(jerkGuy, "these sewaters are laaaaaaaame", dadJoke4);
+		Comment jerkComment2 = new Comment(jerkGuy, "also that s anot a good joeke", dadJoke4);
+		jerkGuy = accountRepo.save(jerkGuy);
+		jerkComment1 = commentRepo.save(jerkComment1);
+		jerkComment2 = commentRepo.save(jerkComment2);
+		
+		//TAGS-------------------------------------------------
+		Tag corbin = new Tag("Corbin");
+		tagRepo.save(corbin);
+		
 	}
 
 }
