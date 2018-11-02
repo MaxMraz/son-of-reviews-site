@@ -67,8 +67,16 @@ public class Review {
 	public Category getCategory() {
 		return category;
 	}
-
 	
+	public Collection<Tag> getTags() {
+		return tags;
+	}
 
+	public void addTag(Tag tagToAdd) {
+		System.out.println(tagToAdd);
+		System.out.println(tags);
+		tags.add(tagToAdd);
+	}
+	
 
 }

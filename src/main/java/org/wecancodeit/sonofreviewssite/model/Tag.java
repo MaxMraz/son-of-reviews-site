@@ -11,10 +11,10 @@ import javax.persistence.ManyToMany;
 public class Tag {
 	@GeneratedValue @Id private Long id;
 	private String name;
-	@ManyToMany
-	Collection<Review> reviews;
+	@ManyToMany(mappedBy="tags")
+	private Collection<Review> reviews;
 	
-	Tag() {}
+	public Tag() {}
 
 	public Tag(String name) {
 		this.name = name;

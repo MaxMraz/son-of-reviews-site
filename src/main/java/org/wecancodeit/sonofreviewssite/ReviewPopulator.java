@@ -160,7 +160,7 @@ public class ReviewPopulator implements CommandLineRunner {
 		//TAGS-------------------------------------------------
 		Tag corbin = new Tag("Corbin");
 		tagRepo.save(corbin);
-		
+//		dadJoke4.addTag(corbin);
 	}
 
 }

@@ -20,13 +20,24 @@
 				<img th:src="@{|/images/${review.reviewImage}|}">
 			</figure>
 			
-		</div>		
+		</div>
+
 		<div id="description">
 			<p th:text="${review.reviewRating}">review rating</p>
 			<p th:text="${review.reviewDescription}">description</p>
 			<p th:text="${review.recomendation}"></p>
 			
 		</div>
+
+
+		<div class="comments">
+			<form th:action="|/reviews/${review.id}|" method="post">
+				<label>User Name: <input type="text" name="accountName" /></label>
+<!-- 				<label for="fullComment">Comment:</label> -->
+					<textarea name="fullComment"></textarea>
+				<input type="submit" value="Submit" />
+			</form>
+			</div>
 
 	</main>
 
