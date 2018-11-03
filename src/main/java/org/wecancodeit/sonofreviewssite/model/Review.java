@@ -1,9 +1,14 @@
 package org.wecancodeit.sonofreviewssite.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Review {
 	@Id
 	@GeneratedValue
+//	@Column(name="TAG_ID")
 	private Long id;
 	private String reviewName;
 	@Lob
@@ -19,10 +25,12 @@ public class Review {
 	private String recomendation;
 	private String reviewRating;
 	private String reviewImage;
-
 	@JsonIgnore
 	@ManyToOne
 	private Category category;
+	
+	@ManyToMany
+	private Set<Tag> tags = new HashSet<Tag>();
 
 	public Review() {
 	}
@@ -66,5 +74,12 @@ public class Review {
 	}
 
 	
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
 
 }

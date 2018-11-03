@@ -158,9 +158,16 @@ public class ReviewPopulator implements CommandLineRunner {
 		jerkComment2 = commentRepo.save(jerkComment2);
 		
 		//TAGS-------------------------------------------------
-		Tag corbin = new Tag("Corbin");
-		tagRepo.save(corbin);
-//		dadJoke4.addTag(corbin);
+		Tag brain = new Tag("Greg's Brain Doesn't Work");
+		tagRepo.save(brain);
+		Tag veggies = new Tag("Vegetables");
+		tagRepo.save(veggies);
+		dadJoke1.addTag(veggies); //joke about a pepper
+		dadJoke1.addTag(brain); //joke about a pepper
+		dadJoke2.addTag(brain); //honest aphorism
+		dadJoke1 = reviewRepo.save(dadJoke1);
+		dadJoke2 = reviewRepo.save(dadJoke2);
+		
 	}
 
 }
