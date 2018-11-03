@@ -15,21 +15,21 @@
 
 const tagsUl = document.querySelector('.tags-ul')
 
-loadTags()
+loadTags(tagsUl)
 
-function loadTags() {
-	const xhttp = new XMLHttpRequest();
+function loadTags(tagsUl) {
+	var xhttp = new XMLHttpRequest();
 	 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    	populateTags(JSON.parse(this.responseText))
+    	populateTags(JSON.parse(this.responseText), tagsUl)
     }
   }
   	xhttp.open("GET", `/api/reviews/${window.location.pathname.split('/')[2]}/tags`, true);  //this is the this.responseText
   	xhttp.send();
 }
 
-function populateTags(allTags) {
-	clearTagList()
+function populateTags(allTags, tagsUl) {
+	clearTagList(tagsUl)
     allTags.forEach(tag=>{
 		let item = document.createElement('li')
 		item.innerHTML = `<a href="/api/tags/${tag.id}">${tag.name}</a>`
@@ -38,22 +38,25 @@ function populateTags(allTags) {
 	})
 }
 
-function clearTagList() {
+function clearTagList(tagsUl) {
 	tagsUl.innerHTML = ''
 }
 
 const newTagButton = document.querySelector('.new-tag-button')
 const newTagField = document.querySelector('.new-tag-field')
-setupNewTagButton(newTagButton, newTagField)
+setupNewTagButton(newTagButton, newTagField, tagsUl)
 
-function setupNewTagButton(button, tagField) {
+function setupNewTagButton(button, tagField, tagsUl) {
 	button.addEventListener('click', function() {
 		const newTagName = tagField.value
 		fetch(`/api/reviews/${window.location.pathname.split('/')[2]}/tags/add`, {
 			method: `POST`,
 			body: newTagName
 		})
-		loadTags()
+		tagField.value = ''
+		loadTags(tagsUl)
+		loadTags(tagsUl)
+		loadTags(tagsUl) //I can't figure out why I have to do this 3 times but... otherwise the tag won't load into the list until the next load
 	})
 }
 

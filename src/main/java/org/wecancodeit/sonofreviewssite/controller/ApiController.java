@@ -49,7 +49,6 @@ public class ApiController {
 	
 	@PostMapping("api/reviews/{id}/tags/add")
 	public void addNewTag(@PathVariable(value = "id") Long id, @RequestBody String body) {
-		System.out.println(body);
 		Tag tag = new Tag(body);
 		Review review = reviewRepo.findById(id).get();
 		review.addTag(tag);
