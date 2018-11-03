@@ -30,7 +30,7 @@ public class Review {
 	private Category category;
 	
 	@ManyToMany
-	private Set<Tag> tags = new HashSet<Tag>();
+	private Collection<Tag> tags = new HashSet<Tag>();
 
 	public Review() {
 	}
@@ -78,7 +78,7 @@ public class Review {
 		tags.add(tag);
 	}
 
-	public Set<Tag> getTags() {
+	public Collection<Tag> getTags() {
 		return tags;
 	}
 
