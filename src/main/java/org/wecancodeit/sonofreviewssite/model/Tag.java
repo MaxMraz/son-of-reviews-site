@@ -47,6 +47,10 @@ public class Tag {
 	public void addReview(Review review) {
 		reviews.add(review);
 	}
+	
+	public void removeReview(Review review) {
+		reviews.remove(review);
+	}
 
 
 	

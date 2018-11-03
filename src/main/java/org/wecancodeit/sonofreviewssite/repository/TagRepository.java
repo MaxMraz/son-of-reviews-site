@@ -5,4 +5,6 @@ import org.wecancodeit.sonofreviewssite.model.Tag;
 
 public interface TagRepository extends CrudRepository<Tag, Long> {
 
+	Tag findByName(String name);
+
 }

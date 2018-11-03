@@ -1,18 +1,4 @@
-//This is how you'd get the tags for the review using fetch, but that won't refresh the list unless you refresh the page
-// fetch(`/api/reviews/${window.location.pathname.split('/')[2]}/tags`, {method: 'get'})
-// 	.then(res => res.json())
-// 	.then(data=> {
-// 		const tagsArea = document.querySelector('.tags-area')
-// 		const list = document.createElement('ul')
-// 		data.forEach(tag =>{
-// 			let item = document.createElement('li')
-// 			item.innerHTML = `<a href="#">${tag.name}</a>`
-// 			list.appendChild(item)
-// 		})
-// 		tagsArea.appendChild(list)
-// 	}
-// )
-
+const currentReviewId = window.location.pathname.split('/')[2]
 const tagsUl = document.querySelector('.tags-ul')
 
 loadTags(tagsUl)
@@ -24,7 +10,7 @@ function loadTags(tagsUl) {
     	populateTags(JSON.parse(this.responseText), tagsUl)
     }
   }
-  	xhttp.open("GET", `/api/reviews/${window.location.pathname.split('/')[2]}/tags`, true);  //this is the this.responseText
+  	xhttp.open("GET", `/api/reviews/${currentReviewId}/tags`, true);  //this is the this.responseText
   	xhttp.send();
 }
 
@@ -32,15 +18,25 @@ function populateTags(allTags, tagsUl) {
 	clearTagList(tagsUl)
     allTags.forEach(tag=>{
 		let item = document.createElement('li')
-		item.innerHTML = `<a href="/api/tags/${tag.id}">${tag.name}</a>`
+		item.innerHTML = `
+			<div>
+				<a href="/api/tags/${tag.id}">${tag.name}</a>
+				<button id="${tag.name}" class="tag-delete-button">Remove Tag</button>
+			</div>`
 																						//TODO - rewrite that anchor link to go to the tag's HTML, not the API
 		tagsUl.appendChild(item)
+		setupDeleteButtons(scanForDeleteButtons(), tagsUl)		//SETUP DELETE BUTTONS AS THEY'RE CREATED
 	})
 }
 
 function clearTagList(tagsUl) {
 	tagsUl.innerHTML = ''
 }
+
+
+
+////////////////////////////////////////ADDING TAGS/////////////////////////////////////////////////////
+
 
 const newTagButton = document.querySelector('.new-tag-button')
 const newTagField = document.querySelector('.new-tag-field')
@@ -49,7 +45,7 @@ setupNewTagButton(newTagButton, newTagField, tagsUl)
 function setupNewTagButton(button, tagField, tagsUl) {
 	button.addEventListener('click', function() {
 		const newTagName = tagField.value
-		fetch(`/api/reviews/${window.location.pathname.split('/')[2]}/tags/add`, {
+		fetch(`/api/reviews/${currentReviewId}/tags/add`, {
 			method: `POST`,
 			body: newTagName
 		})
@@ -61,15 +57,27 @@ function setupNewTagButton(button, tagField, tagsUl) {
 }
 
 
-//ADD TAGS
 
-// const addTagButton = document.querySelector('.new-tag-button')
-// const newTagField = document.querySelector('.new-tag-field')
-// addTagButton.addEventListener('click', function() {
-// 	const newTagName = newTagField.value
-// 	fetch(`/api/reviews/${window.location.pathname.split('/')[2]}/tags/add`, {
-// 		method: `POST`,
-// 		body: newTagName
-// 	})
+/////////////////////////////////////REMOVING TAGS//////////////////////////////////////////////
 
-// })
+
+function scanForDeleteButtons() {
+	let buttons = document.querySelectorAll('.tag-delete-button')
+	return buttons
+}
+
+
+function setupDeleteButtons(buttons, tagsUl) {
+	buttons.forEach(button => {
+		button.addEventListener('click', function(button) {
+			let tagName = button.id
+			fetch(`/api/reviews/${currentReviewId}/tags/remove`, {
+				method: `POST`,
+				body: tagName
+			})
+			loadTags(tagsUl)
+			loadTags(tagsUl)
+			loadTags(tagsUl) //Still not sure why, but gonna play it safe
+		})
+	})
+}
