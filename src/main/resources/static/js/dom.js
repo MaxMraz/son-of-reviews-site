@@ -82,3 +82,4 @@ function setupDeleteButtons(buttons, tagsUl) {
 		})
 	})
 }
+
