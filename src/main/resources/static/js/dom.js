@@ -83,3 +83,11 @@ function setupDeleteButtons(buttons, tagsUl) {
 	})
 }
 
+module.exports = {
+	loadTags,
+	populateTags,
+	clearTagList,
+	setupNewTagButton,
+	scanForDeleteButtons,
+	setupDeleteButtons
+}
