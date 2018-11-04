@@ -5,4 +5,6 @@ import org.wecancodeit.sonofreviewssite.model.Account;
 
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
+	Account findByUsername(String accountName);
+
 }

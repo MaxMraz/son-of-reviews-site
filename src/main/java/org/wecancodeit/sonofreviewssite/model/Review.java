@@ -2,7 +2,6 @@ package org.wecancodeit.sonofreviewssite.model;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,9 +28,12 @@ public class Review {
 	@JsonIgnore
 	@ManyToOne
 	private Category category;
-	
+
 	@ManyToMany
 	private Collection<Tag> tags = new HashSet<Tag>();
+
+	@OneToMany(mappedBy = "review")
+	private Collection<Comment> comments = new HashSet<Comment>();
 
 	public Review() {
 	}
@@ -77,15 +80,21 @@ public class Review {
 		return tags;
 	}
 
-	
-	
+	public Collection<Comment> getComments() {
+		return comments;
+	}
+
 	public void addTag(Tag tag) {
-		if(!tags.contains(tag)) {
-			tags.add(tag);			
+		if (!tags.contains(tag)) {
+			tags.add(tag);
 		}
 	}
-	
+
 	public void removeTag(Tag tag) {
 		tags.remove(tag);
+	}
+
+	public void addComment(Comment comment) {
+		comments.add(comment);
 	}
 }

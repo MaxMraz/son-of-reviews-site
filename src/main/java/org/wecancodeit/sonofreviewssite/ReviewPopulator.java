@@ -4,9 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import org.wecancodeit.sonofreviewssite.model.Account;
 import org.wecancodeit.sonofreviewssite.model.Category;
-import org.wecancodeit.sonofreviewssite.model.Comment;
 import org.wecancodeit.sonofreviewssite.model.Review;
 import org.wecancodeit.sonofreviewssite.model.Tag;
 import org.wecancodeit.sonofreviewssite.repository.AccountRepository;
@@ -23,13 +21,13 @@ public class ReviewPopulator implements CommandLineRunner {
 
 	@Resource
 	ReviewRepository reviewRepo;
-	
+
 	@Resource
 	AccountRepository accountRepo;
-	
+
 	@Resource
 	CommentRepository commentRepo;
-	
+
 	@Resource
 	TagRepository tagRepo;
 
@@ -148,23 +146,22 @@ public class ReviewPopulator implements CommandLineRunner {
 				category5);
 		dadJoke4 = reviewRepo.save(dadJoke4);
 
-		
-		//COMMENTS-------------------
-		Account jerkGuy = new Account("MAGA420blazin69");
-		Comment jerkComment1 = new Comment(jerkGuy, "these sewaters are laaaaaaaame", dadJoke4);
-		Comment jerkComment2 = new Comment(jerkGuy, "also that s anot a good joeke", dadJoke4);
-		jerkGuy = accountRepo.save(jerkGuy);
-		jerkComment1 = commentRepo.save(jerkComment1);
-		jerkComment2 = commentRepo.save(jerkComment2);
-		
-		//TAGS-------------------------------------------------
+		// COMMENTS-------------------
+//		Account jerkGuy = new Account("MAGA420blazin69");
+//		Comment jerkComment1 = new Comment(jerkGuy, "these sewaters are laaaaaaaame", dadJoke4);
+//		Comment jerkComment2 = new Comment(jerkGuy, "also that s anot a good joeke", dadJoke4);
+//		jerkGuy = accountRepo.save(jerkGuy);
+//		jerkComment1 = commentRepo.save(jerkComment1);
+//		jerkComment2 = commentRepo.save(jerkComment2);
+
+		// TAGS-------------------------------------------------
 		Tag brain = new Tag("Greg's Brain Doesn't Work");
 		brain = tagRepo.save(brain);
 		Tag veggies = new Tag("Vegetables");
 		veggies = tagRepo.save(veggies);
-		dadJoke1.addTag(veggies); //joke about a pepper
-		dadJoke1.addTag(brain); //joke about a pepper
-		dadJoke2.addTag(brain); //honest aphorism
+		dadJoke1.addTag(veggies); // joke about a pepper
+		dadJoke1.addTag(brain); // joke about a pepper
+		dadJoke2.addTag(brain); // honest aphorism
 		brain.addReview(dadJoke1);
 		veggies.addReview(dadJoke1);
 		brain.addReview(dadJoke2);
@@ -172,7 +169,7 @@ public class ReviewPopulator implements CommandLineRunner {
 		dadJoke2 = reviewRepo.save(dadJoke2);
 		veggies = tagRepo.save(veggies);
 		brain = tagRepo.save(brain);
-		
+
 	}
 
 }
