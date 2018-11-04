@@ -3,11 +3,12 @@ package org.wecancodeit.sonofreviewssite.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.sonofreviewssite.model.Category;
 import org.wecancodeit.sonofreviewssite.model.Review;
@@ -85,7 +86,6 @@ public class ApiController {
 	
 	@PostMapping("/api/reviews/{id}/tags/remove")
 	public void removeTag(@PathVariable(value = "id") Long id, @RequestBody String body) {
-		System.out.println(body);
 		Tag tag = tagRepo.findByName(body);
 		Review review = reviewRepo.findById(id).get();
 		review.removeTag(tag);

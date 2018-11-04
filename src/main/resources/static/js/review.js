@@ -69,7 +69,8 @@ function scanForDeleteButtons() {
 function setupDeleteButtons(buttons, tagsUl) {
 	buttons.forEach(button => {
 		button.addEventListener('click', function(button) {
-			let tagName = button.id
+			//for reasons I don't understand, button.id does not return the id of the element. But you can get to the id this way:
+			let tagName = button.path[0].id
 			fetch(`/api/reviews/${currentReviewId}/tags/remove`, {
 				method: `POST`,
 				body: tagName
