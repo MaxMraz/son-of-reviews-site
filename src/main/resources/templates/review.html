@@ -29,28 +29,25 @@
 			<p th:text="${review.reviewDescription}">description</p>
 			<p th:text="${review.recomendation}"></p>
 			
-		</div>
-
-
-		<div class="comments">
-			<form th:action="|/reviews/${review.id}|" method="post">
+			<form class="comments" th:action="|/reviews/${review.id}|" method="post">
 				<label>User Name: <input type="text" name="accountName" /></label>
 <!-- 				<label for="fullComment">Comment:</label> -->
+					<p>Comments:</p>
 					<textarea name="fullComment"></textarea>
 				<input type="submit" value="Submit" />
-			</form>
-			</div>
-
-		<div class="tags-area">
-			<h2>Tags:</h2>
+			<h3>Tags:</h3>
 			<ul class="tags-ul">
 				
 			</ul>
-		</div>
-		<div class="new-tag-area">
+		
+		<p class="new-tag-area">
 			<label>Add A New Tag: <input class="new-tag-field" type="text" name="tag-input"></label>
 			<button class="new-tag-button">Add Tag</button>
+		</p>
+			</form>
+			
 		</div>
+
 
 	</main>
 <script src="/js/review.js"></script>

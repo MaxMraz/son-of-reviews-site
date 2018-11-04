@@ -19,6 +19,8 @@ h1 {
 
 main {
 	display: flex;
+
+	align-content: stretch;
 }
 
 main * {
@@ -31,4 +33,15 @@ main * {
 
 #description * {
 	margin: 1rem auto;
+}
+
+.comments {
+	display: grid;
+	grid-template-columns: 1fr;
+	align-self: grid-start;
+}
+
+textarea {
+	width: 30vw;
+	height: 10vw;
 }
