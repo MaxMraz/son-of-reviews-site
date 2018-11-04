@@ -78,10 +78,12 @@ public class ReviewController {
 		System.out.println("MAXMAXMAX");
 		Review review = reviewRepo.findById(id).get();
 		Account account = new Account(accountName);
+		account = accountRepo.save(account);
 		Comment comment = new Comment(account, fullComment, review);
 		review.addComment(comment);
 		review = reviewRepo.save(review);
-//		comment = commentRepo.save(comment);
+		comment = commentRepo.save(comment);
+
 		return "redirect:/reviews/{id}";
 	}
 

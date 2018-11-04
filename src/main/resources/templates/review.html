@@ -41,7 +41,13 @@
 			<ul class="tags-ul">
 				
 			</ul>
-		
+		<div>
+			<ul>
+				<li th:each="comment : ${review.comments}">
+					<h3 th:text="${comment.content}"></h3>
+				</li>
+			</ul>
+		</div>
 		<p class="new-tag-area">
 			<label>Add A New Tag: <input class="new-tag-field" type="text" name="tag-input"></label>
 			<button class="new-tag-button">Add Tag</button>
