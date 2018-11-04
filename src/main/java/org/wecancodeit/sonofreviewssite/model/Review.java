@@ -73,13 +73,19 @@ public class Review {
 		return category;
 	}
 
-	
-	public void addTag(Tag tag) {
-		tags.add(tag);
-	}
-
 	public Collection<Tag> getTags() {
 		return tags;
 	}
 
+	
+	
+	public void addTag(Tag tag) {
+		if(!tags.contains(tag)) {
+			tags.add(tag);			
+		}
+	}
+	
+	public void removeTag(Tag tag) {
+		tags.remove(tag);
+	}
 }

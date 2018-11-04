@@ -159,14 +159,19 @@ public class ReviewPopulator implements CommandLineRunner {
 		
 		//TAGS-------------------------------------------------
 		Tag brain = new Tag("Greg's Brain Doesn't Work");
-		tagRepo.save(brain);
+		brain = tagRepo.save(brain);
 		Tag veggies = new Tag("Vegetables");
-		tagRepo.save(veggies);
+		veggies = tagRepo.save(veggies);
 		dadJoke1.addTag(veggies); //joke about a pepper
 		dadJoke1.addTag(brain); //joke about a pepper
 		dadJoke2.addTag(brain); //honest aphorism
+		brain.addReview(dadJoke1);
+		veggies.addReview(dadJoke1);
+		brain.addReview(dadJoke2);
 		dadJoke1 = reviewRepo.save(dadJoke1);
 		dadJoke2 = reviewRepo.save(dadJoke2);
+		veggies = tagRepo.save(veggies);
+		brain = tagRepo.save(brain);
 		
 	}
 
