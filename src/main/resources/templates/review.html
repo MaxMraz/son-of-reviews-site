@@ -8,7 +8,9 @@
 </head>
 	<nav>
 		<ul>
-			<li th:each="category : ${categories}"><a th:href="|/categories/${category.id}|" th:text="${category.name}">Category Links</a></li>
+			<li th:each="category : ${categories}">
+				<a th:href="|/categories/${category.id}|" th:text="${category.name}">Category Links</a>
+			</li>
 		</ul>
 	</nav>
 <body>

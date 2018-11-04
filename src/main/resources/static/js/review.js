@@ -20,10 +20,9 @@ function populateTags(allTags, tagsUl) {
 		let item = document.createElement('li')
 		item.innerHTML = `
 			<div>
-				<a href="/api/tags/${tag.id}">${tag.name}</a>
+				<a href="/tags/${tag.id}">${tag.name}</a>
 				<button id="${tag.name}" class="tag-delete-button">Remove Tag</button>
 			</div>`
-																						//TODO - rewrite that anchor link to go to the tag's HTML, not the API
 		tagsUl.appendChild(item)
 		setupDeleteButtons(scanForDeleteButtons(), tagsUl)		//SETUP DELETE BUTTONS AS THEY'RE CREATED
 	})

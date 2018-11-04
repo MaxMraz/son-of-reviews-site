@@ -13,6 +13,7 @@ import org.wecancodeit.sonofreviewssite.repository.AccountRepository;
 import org.wecancodeit.sonofreviewssite.repository.CategoryRepository;
 import org.wecancodeit.sonofreviewssite.repository.CommentRepository;
 import org.wecancodeit.sonofreviewssite.repository.ReviewRepository;
+import org.wecancodeit.sonofreviewssite.repository.TagRepository;
 
 
 @Controller
@@ -29,6 +30,9 @@ public class ReviewController {
 	
 	@Resource
 	AccountRepository accountRepo;
+	
+	@Resource
+	TagRepository tagRepo;
 
 	@RequestMapping("categories")
 	public String listCourses(Model model) {
@@ -55,6 +59,12 @@ public class ReviewController {
 		model.addAttribute("review", reviewRepo.findById(id).get());
 		model.addAttribute("categories", categoryRepo.findAll());
 		return "review";
+	}
+	
+	@RequestMapping("/tags/{id}")
+	public String getTagPage(@PathVariable(value = "id") Long id, Model model) {
+		model.addAttribute("tag", tagRepo.findById(id).get());
+		return "tag";
 	}
 	
 	
