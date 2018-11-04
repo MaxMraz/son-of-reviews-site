@@ -67,6 +67,12 @@ public class ReviewController {
 		return "tag";
 	}
 	
+	@RequestMapping("/tags")
+	public String showAllTags(Model model) {
+		model.addAttribute("tags", tagRepo.findAll());
+		return "tags";
+	}
+	
 	
 	
 	@PostMapping("/reviews/{id}")

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">>
+<head>
+	<title>Greg's Tags</title>
+</head>
+<body>
+	<main>
+		<h1>Tags:</h1>
+		<ul>
+			<li th:each="tag : ${tags}">
+				<a th:href="|/tags/${tag.id}|" th:text="${tag.name}"></a>
+			</li>
+		</ul>
+	</main>
+</body>
+</html>
