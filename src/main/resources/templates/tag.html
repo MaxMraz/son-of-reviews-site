@@ -8,7 +8,7 @@
 		<h1 th:text="${tag.name}"></h1>
 		<ul>
 			<li th:each="review : ${tag.reviews}">
-				<a href="#" th:text="${review.reviewName}"></a>
+				<a th:href="|/reviews/${review.id}|" th:text="${review.reviewName}"></a>
 			</li>
 		</ul>
 	</main>
