@@ -80,7 +80,9 @@ public class Review {
 	
 	
 	public void addTag(Tag tag) {
-		tags.add(tag);
+		if(!tags.contains(tag)) {
+			tags.add(tag);			
+		}
 	}
 	
 	public void removeTag(Tag tag) {

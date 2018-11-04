@@ -50,15 +50,40 @@ public class ApiController {
 	
 	@PostMapping("/api/reviews/{id}/tags/add")
 	public void addNewTag(@PathVariable(value = "id") Long id, @RequestBody String body) {
-		Tag tag = new Tag(body);
 		Review review = reviewRepo.findById(id).get();
-		review.addTag(tag);
-		tag.addReview(review);
-		tag = tagRepo.save(tag);
-		review = reviewRepo.save(review);	
+		boolean tagAlreadyApplied = false;
+		for(Tag tag : review.getTags()) {
+			if (tag.getName().equalsIgnoreCase(body)){
+				tagAlreadyApplied= true;
+			}
+		}
+		if(tagAlreadyApplied == false) {
+			applyTag(body, id);
+		}
+			
 	}
 	
-	@DeleteMapping("/api/reviews/{id}/tags/remove")
+	public void applyTag(String tagName, Long reviewId) {
+		Review review = reviewRepo.findById(reviewId).get();
+		//this is a new tag
+		if(tagRepo.findByName(tagName)==null) {
+			Tag tag = new Tag(tagName);
+			review.addTag(tag);
+			tag.addReview(review);
+			tag = tagRepo.save(tag);
+			review = reviewRepo.save(review);
+		} else { //this tag already exists
+			Tag tag = tagRepo.findByName(tagName);
+			review.addTag(tag);
+			tag.addReview(review);
+			tag = tagRepo.save(tag);
+			review = reviewRepo.save(review);
+		}
+		
+			
+	}
+	
+	@PostMapping("/api/reviews/{id}/tags/remove")
 	public void removeTag(@PathVariable(value = "id") Long id, @RequestBody String body) {
 		System.out.println(body);
 		Tag tag = tagRepo.findByName(body);
