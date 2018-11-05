@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -57,29 +59,29 @@ public class ReviewControllerTest {
 	}
 
 
-//	@Test
-//	public void shouldBeOkWhenAccessingRewiew() throws Exception {
-//		when(reviewRepo.findById(1L).get()).thenReturn(reviewOne);
-//		mockMvc.perform(get("/reviews/1")).andExpect(status().isOk());
-//	}
-//	
-//
-//	@Test
-//	public void shouldReturReviewTemplateWhenAccessingReview() throws Exception {
-//		when(reviewRepo.findById(6L).get()).thenReturn(reviewOne);
-//		mockMvc.perform(get("/reviews/6")).andExpect(view().name("review"));
-//	}
-//
-//	  @Test
-//	  public void shouldBeOkWhenAccessingCategory() throws Exception {
-//		  when(categoryRepo.findById(1L).get()).thenReturn(categoryOne);
-//		  mockMvc.perform(get("/categories/1")).andExpect(status().isOk());
-//	  }
-//	  
-//	  @Test
-//	  public void shouldReturCateogryTemplateWhenAccessingCategory() throws
-//	  Exception { when(categoryRepo.findById(1L).get()).thenReturn(categoryOne);
-//	  mockMvc.perform(get("/categories/1")).andExpect(view().name("category"));
-//	  }
+	@Test
+	public void shouldBeOkWhenAccessingRewiew() throws Exception {
+		when(reviewRepo.findById(1L)).thenReturn(Optional.of(reviewOne));
+		mockMvc.perform(get("/reviews/1")).andExpect(status().isOk());
+	}
+	
+
+	@Test
+	public void shouldReturReviewTemplateWhenAccessingReview() throws Exception {
+		when(reviewRepo.findById(1L)).thenReturn(Optional.of(reviewOne));
+		mockMvc.perform(get("/reviews/1")).andExpect(view().name("review"));
+	}
+
+	  @Test
+	  public void shouldBeOkWhenAccessingCategory() throws Exception {
+		  when(categoryRepo.findById(1L)).thenReturn(Optional.of(categoryOne));
+		  mockMvc.perform(get("/categories/1")).andExpect(status().isOk());
+	  }
+	  
+	  @Test
+	  public void shouldReturCateogryTemplateWhenAccessingCategory() throws
+	  Exception { when(categoryRepo.findById(1L)).thenReturn(Optional.of(categoryOne));
+	  mockMvc.perform(get("/categories/1")).andExpect(view().name("category"));
+	  }
 
 }

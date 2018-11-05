@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="${tag.name}"></title>
+	<link rel="stylesheet" type="text/css" href="/css/nav.css">
+	<link rel="stylesheet" type="text/css" href="/css/layout.css">
+</head>
+	<nav>
+		<ul>
+			<li th:each="category : ${categories}">
+				<a th:href="|/categories/${category.id}|" th:text="${category.name}">Category Links</a>
+			</li>
+		</ul>
+	</nav>
+<body>
+	<main class="tagsMain">
+		<h1 th:text="${tag.name}"></h1>
+		<ul>
+			<li th:each="review : ${tag.reviews}">
+				<a th:href="|/reviews/${review.id}|" th:text="${review.reviewName}"></a>
+			</li>
+		</ul>
+	</main>
+</body>
+</html>

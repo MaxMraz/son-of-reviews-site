@@ -8,7 +8,9 @@
 </head>
 	<nav>
 		<ul>
-			<li th:each="category : ${categories}"><a th:href="|/categories/${category.id}|" th:text="${category.name}">Category Links</a></li>
+			<li th:each="category : ${categories}">
+				<a th:href="|/categories/${category.id}|" th:text="${category.name}">Category Links</a>
+			</li>
 		</ul>
 	</nav>
 <body>
@@ -20,15 +22,45 @@
 				<img th:src="@{|/images/${review.reviewImage}|}">
 			</figure>
 			
-		</div>		
+		</div>
+
 		<div id="description">
 			<p th:text="${review.reviewRating}">review rating</p>
 			<p th:text="${review.reviewDescription}">description</p>
 			<p th:text="${review.recomendation}"></p>
+		<div class="commentsMain">
+			<h3>Comments:</h3>
+			<ul>
+				<li th:each="comment : ${review.comments}">
+					<p class="commentUsername" th:text="${comment.account.username}"></p>
+					<p class="commentText" th:text="|&quot;${comment.content}&quot;|"></p>
+				</li>
+			</ul>
+		</div>
+			
+			<form class="comments" th:action="|/reviews/${review.id}/comments/add|" method="post">
+				<!-- <p th:text="${review.tag}" -->
+					<h3>Add Comment:</h3>
+				<label>User Name: <input type="text" name="accountName" /></label>
+<!-- 				<label for="fullComment">Comment:</label> -->
+					<textarea name="fullComment"></textarea>
+				<input type="submit" value="Submit" />
+			</form>
+				<h3 class="tagsName">Tags:</h3>
+			<ul class="tags-ul">
+				
+			</ul>
+		<p class="new-tag-area">
+			<label>Add A New Tag: <input class="new-tag-field" type="text" name="tag-input"></label>
+			<button class="new-tag-button">Add Tag</button>
+		</p>
+		
 			
 		</div>
 
-	</main>
 
+	</main>
+<script src="/js/dom.js"></script>
+<script src="/js/review.js"></script>
 </body>
 </html>
