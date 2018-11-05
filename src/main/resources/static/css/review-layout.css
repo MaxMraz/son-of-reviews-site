@@ -45,3 +45,36 @@ textarea {
 	width: 30vw;
 	height: 10vw;
 }
+
+.commentsMain {
+	text-align: center;
+	padding: .5vw;
+
+}
+.commentUsername {
+	font-weight: bold;
+
+}
+
+.commentText {
+	justify-content: center;
+	font-style: italic;
+	
+}
+
+.tags-ul {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	flex-wrap: wrap;
+}
+
+.tagsName {
+	text-align: center;
+
+}
+
+.new-tag-area {
+	display: grid;
+	grid-template-columns: 1fr;
+}

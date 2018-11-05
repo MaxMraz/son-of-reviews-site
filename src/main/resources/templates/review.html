@@ -28,26 +28,28 @@
 			<p th:text="${review.reviewRating}">review rating</p>
 			<p th:text="${review.reviewDescription}">description</p>
 			<p th:text="${review.recomendation}"></p>
-			
-			<form class="comments" th:action="|/reviews/${review.id}/comments/add|" method="post">
-				<!-- <p th:text="${review.tag}" -->
-				<label>User Name: <input type="text" name="accountName" /></label>
-<!-- 				<label for="fullComment">Comment:</label> -->
-					<p>Comments:</p>
-					<textarea name="fullComment"></textarea>
-				<input type="submit" value="Submit" />
-			</form>
-				<h3>Tags:</h3>
-			<ul class="tags-ul">
-				
-			</ul>
-		<div>
+		<div class="commentsMain">
+			<h3>Comments:</h3>
 			<ul>
 				<li th:each="comment : ${review.comments}">
-					<h3 th:text="${comment.content}"></h3>
+					<p class="commentUsername" th:text="${comment.account.username}"></p>
+					<p class="commentText" th:text="|&quot;${comment.content}&quot;|"></p>
 				</li>
 			</ul>
 		</div>
+			
+			<form class="comments" th:action="|/reviews/${review.id}/comments/add|" method="post">
+				<!-- <p th:text="${review.tag}" -->
+					<h3>Add Comment:</h3>
+				<label>User Name: <input type="text" name="accountName" /></label>
+<!-- 				<label for="fullComment">Comment:</label> -->
+					<textarea name="fullComment"></textarea>
+				<input type="submit" value="Submit" />
+			</form>
+				<h3 class="tagsName">Tags:</h3>
+			<ul class="tags-ul">
+				
+			</ul>
 		<p class="new-tag-area">
 			<label>Add A New Tag: <input class="new-tag-field" type="text" name="tag-input"></label>
 			<button class="new-tag-button">Add Tag</button>

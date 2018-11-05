@@ -64,12 +64,14 @@ public class ReviewController {
 	@RequestMapping("/tags/{id}")
 	public String getTagPage(@PathVariable(value = "id") Long id, Model model) {
 		model.addAttribute("tag", tagRepo.findById(id).get());
+		model.addAttribute("categories", categoryRepo.findAll());
 		return "tag";
 	}
 
 	@RequestMapping("/tags")
 	public String showAllTags(Model model) {
 		model.addAttribute("tags", tagRepo.findAll());
+		model.addAttribute("categories", categoryRepo.findAll());
 		return "tags";
 	}
 
